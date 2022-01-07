@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/VRTK/Examples/[005 - Interactions] InteractableObjects.unity
-    guid: bece393a6b2458142935d8d7562c52d7
+    path: Assets/Scenes/SampleScene.unity
+    guid: 6812ebb6e5e535e46885a767a9524c3e
   m_configObjects: {}

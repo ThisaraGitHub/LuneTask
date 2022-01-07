@@ -105,6 +105,7 @@ namespace VRTK
         /// </summary>
         public event SnapDropZoneEventHandler ObjectUnsnappedFromDropZone;
 
+        public GameObject instructionUI;
         protected GameObject previousPrefab;
         protected GameObject highlightContainer;
         protected GameObject highlightObject;
@@ -153,6 +154,7 @@ namespace VRTK
             if (ObjectSnappedToDropZone != null)
             {
                 ObjectSnappedToDropZone(this, e);
+                instructionUI.SetActive(false);
             }
         }
 
