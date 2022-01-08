@@ -1,52 +1,61 @@
-﻿namespace VRTK.Examples
+﻿namespace VRTK
 {
     using UnityEngine;
 
     public class GunShoot : MonoBehaviour
     {
         public VRTK_InteractableObject linkedObject;
+        public VRTK_ControllerEvents controllerEvents;
         public GameObject projectile;
         public Transform projectileSpawnPoint;
         public float projectileSpeed = 1000f;
         public float projectileLife = 5f;
+        public bool canDrill = false;
 
-        protected virtual void OnEnable()
+        public RotateDrilHead rotateDrilHead;
+
+        private void Start()
         {
-            linkedObject = (linkedObject == null ? GetComponent<VRTK_InteractableObject>() : linkedObject);
-
-            if (linkedObject != null)
-            {
-                linkedObject.InteractableObjectUsed += InteractableObjectUsed;
-            }
+            linkedObject = GetComponent<VRTK_InteractableObject>();
+            linkedObject.InteractableObjectUnused += EnableDrill; 
+            linkedObject.InteractableObjectUsed += DisableDrill;
         }
+
+        //protected virtual void OnEnable()
+        //{
+        //    linkedObject = (linkedObject == null ? GetComponent<VRTK_InteractableObject>() : linkedObject);
+        //    //  trackedControllerEventHandler = GetComponent<VRTKTrackedControllerEventHandler>();
+
+        //    if (linkedObject != null)
+        //    {
+        //        linkedObject.InteractableObjectUsed += InteractableObjectUsed;
+        //        VRTK_InteractGrab.ObjectAdded += CheckDrill;
+        //    }
+        //}
+
+
 
         protected virtual void OnDisable()
         {
-            if (linkedObject != null)
-            {
-                linkedObject.InteractableObjectUsed -= InteractableObjectUsed;
-            }
+            linkedObject.InteractableObjectUnused -= EnableDrill;
+            linkedObject.InteractableObjectUsed -= DisableDrill;
+            //if (linkedObject != null)
+            //{
+            //    linkedObject.InteractableObjectUsed -= DisableDrill;
+            //}
         }
 
-        protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
+        public void EnableDrill(object sender, InteractableObjectEventArgs e)
         {
-            FireProjectile();
+            rotateDrilHead.canRotate = false;
+            //Spond on
         }
 
-        protected virtual void FireProjectile()
+        protected virtual void DisableDrill(object sender, InteractableObjectEventArgs e)
         {
-            if (projectile != null && projectileSpawnPoint != null)
-            {
-                GameObject clonedProjectile = Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
-                Rigidbody projectileRigidbody = clonedProjectile.GetComponent<Rigidbody>();
-                float destroyTime = 0f;
-                if (projectileRigidbody != null)
-                {
-                    projectileRigidbody.AddForce(clonedProjectile.transform.forward * projectileSpeed);
-                    destroyTime = projectileLife;
-                }
-                Destroy(clonedProjectile, destroyTime);
-            }
+            rotateDrilHead.canRotate = true;
+            //Spond off
         }
+
     }
 }

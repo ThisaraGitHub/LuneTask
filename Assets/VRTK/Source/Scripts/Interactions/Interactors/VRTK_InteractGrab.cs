@@ -2,6 +2,7 @@
 namespace VRTK
 {
     using UnityEngine;
+    using System;
 
     /// <summary>
     /// Determines if the Interact Touch can initiate a grab with the touched Interactable Object.
@@ -85,6 +86,8 @@ namespace VRTK
         protected GameObject undroppableGrabbedObject;
         protected Rigidbody originalControllerAttachPoint;
 
+        public static event Action ObjectAdded;
+
         protected VRTK_ControllerReference controllerReference
         {
             get
@@ -106,6 +109,7 @@ namespace VRTK
             if (ControllerGrabInteractableObject != null)
             {
                 ControllerGrabInteractableObject(this, e);
+                ObjectAdded?.Invoke();
             }
         }
 
@@ -122,6 +126,7 @@ namespace VRTK
             if (ControllerUngrabInteractableObject != null)
             {
                 ControllerUngrabInteractableObject(this, e);
+                ObjectAdded?.Invoke();
             }
         }
 
@@ -410,6 +415,7 @@ namespace VRTK
 
         protected virtual void InitGrabbedObject()
         {
+            ObjectAdded?.Invoke();
             grabbedObject = (interactTouch != null ? interactTouch.GetTouchedObject() : null);
             if (grabbedObject != null)
             {
