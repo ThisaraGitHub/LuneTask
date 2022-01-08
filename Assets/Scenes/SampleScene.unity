@@ -11657,8 +11657,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &425429364
-BoxCollider:
+--- !u!136 &425429364
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11667,9 +11667,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.062428433, y: 0.06242845, z: 0.068766646}
-  m_Center: {x: -0.000000003310718, y: 0.00000034483952, z: 0.004196944}
+  m_Radius: 0.051932592
+  m_Height: 0.10386519
+  m_Direction: 0
+  m_Center: {x: -0.00000009728384, y: 0.0000002077123, z: 0.021746432}
 --- !u!1 &425429365
 GameObject:
   m_ObjectHideFlags: 0
@@ -13805,6 +13806,50 @@ Transform:
   - {fileID: 1325269631}
   m_Father: {fileID: 171595528}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &483893856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 483893858}
+  - component: {fileID: 483893857}
+  m_Layer: 0
+  m_Name: NotificationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &483893857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483893856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b591bb2cbc0e6af499b523062f28f61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snapObject: {fileID: 1702770590}
+--- !u!4 &483893858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483893856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &485810488
 GameObject:
@@ -24405,8 +24450,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868030655}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 500, y: 1, z: 500}
+  m_LocalPosition: {x: 0.98, y: -0.011, z: 0.4}
+  m_LocalScale: {x: 6.271439, y: 0.03168514, z: 5.4724984}
   m_Children: []
   m_Father: {fileID: 1375112423}
   m_RootOrder: 2
@@ -27969,6 +28014,70 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016309082}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1016436151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1016436153}
+  - component: {fileID: 1016436152}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1016436152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016436151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc00acf23fa9eda4faaab7d44452c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: DrillStart
+    clip: {fileID: 8300000, guid: 188869bdd9cd49b4dbcae39dfb175f89, type: 3}
+    volume: 0.5
+    loop: 1
+    source: {fileID: 0}
+  - name: DrillEnd
+    clip: {fileID: 8300000, guid: 2aed37616b7d68d46a95a640a3435ffb, type: 3}
+    volume: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Notification
+    clip: {fileID: 8300000, guid: 1c1f46b19f71001488e92ccc94257910, type: 3}
+    volume: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Snap
+    clip: {fileID: 8300000, guid: c5bd02d1146d38e4fa44c5489331c5f7, type: 3}
+    volume: 0.5
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &1016436153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016436151}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1022383683
 GameObject:
   m_ObjectHideFlags: 0
@@ -41177,6 +41286,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 1812289512735356, guid: afec65f27dcd2c74cba31fc61eea61e6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afec65f27dcd2c74cba31fc61eea61e6, type: 3}
 --- !u!1 &1230947286
@@ -48172,7 +48285,7 @@ PrefabInstance:
     - target: {fileID: 7959252078615945095, guid: 3d7aefe7302e8c34d8bd4c961fa687d9,
         type: 3}
       propertyPath: m_Name
-      value: CylinderToSnap
+      value: SnapCable
       objectReference: {fileID: 0}
     - target: {fileID: 7959252078615945094, guid: 3d7aefe7302e8c34d8bd4c961fa687d9,
         type: 3}
@@ -51840,7 +51953,7 @@ GameObject:
   - component: {fileID: 1534301634}
   - component: {fileID: 1534301633}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51912,8 +52025,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534301632}
   m_LocalRotation: {x: -0, y: -0.16849841, z: -0, w: 0.9857019}
-  m_LocalPosition: {x: 2.014, y: 0.964, z: -0.007}
-  m_LocalScale: {x: 0.38124, y: 0.024981849, z: 0.65788}
+  m_LocalPosition: {x: 2.014, y: 0.9468, z: -0.007}
+  m_LocalScale: {x: 0.38124, y: 0.059366867, z: 0.65788}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -68404,7 +68517,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 5dc45fafe79e70c44b92b98c01035b29, type: 3}
       propertyPath: m_Name
-      value: screw
+      value: Screw
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5dc45fafe79e70c44b92b98c01035b29, type: 3}
       propertyPath: m_LocalPosition.x
