@@ -1,44 +1,52 @@
-﻿namespace VRTK
+﻿namespace VRTK.Examples
 {
     using UnityEngine;
 
     public class GunShoot : MonoBehaviour
     {
         public VRTK_InteractableObject linkedObject;
-        public bool canDrill = false;
-        public RotateDrilHead rotateDrilHead;
+        public GameObject projectile;
+        public Transform projectileSpawnPoint;
+        public float projectileSpeed = 1000f;
+        public float projectileLife = 5f;
 
-        private void Start()
+        protected virtual void OnEnable()
         {
-            linkedObject = GetComponent<VRTK_InteractableObject>();
-            linkedObject.InteractableObjectUsed += EnableDrill;
-            linkedObject.InteractableObjectUnused += DisableDrill; 
+            linkedObject = (linkedObject == null ? GetComponent<VRTK_InteractableObject>() : linkedObject);
+
+            if (linkedObject != null)
+            {
+                linkedObject.InteractableObjectUsed += InteractableObjectUsed;
+            }
         }
-
-
 
         protected virtual void OnDisable()
         {
-            linkedObject.InteractableObjectUsed -= EnableDrill;
-            linkedObject.InteractableObjectUnused -= DisableDrill;
+            if (linkedObject != null)
+            {
+                linkedObject.InteractableObjectUsed -= InteractableObjectUsed;
+            }
         }
 
-        public void EnableDrill(object sender, InteractableObjectEventArgs e)
+        protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
         {
-            rotateDrilHead.canRotate = true;
-            canDrill = true;
-            //Spond on
-            FindObjectOfType<SoundManager>().Play("DrillStart");
+            FireProjectile();
         }
 
-        protected virtual void DisableDrill(object sender, InteractableObjectEventArgs e)
+        protected virtual void FireProjectile()
         {
-            rotateDrilHead.canRotate = false;
-            canDrill = false;
-            //Spond off
-            FindObjectOfType<SoundManager>().Stop("DrillStart");
-            FindObjectOfType<SoundManager>().Play("DrillEnd");
+            if (projectile != null && projectileSpawnPoint != null)
+            {
+                GameObject clonedProjectile = Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+                Rigidbody projectileRigidbody = clonedProjectile.GetComponent<Rigidbody>();
+                float destroyTime = 0f;
+                if (projectileRigidbody != null)
+                {
+                    projectileRigidbody.AddForce(clonedProjectile.transform.forward * projectileSpeed);
+                    destroyTime = projectileLife;
+                }
+                Destroy(clonedProjectile, destroyTime);
+            }
         }
-
     }
 }

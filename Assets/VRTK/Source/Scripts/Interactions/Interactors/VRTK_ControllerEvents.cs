@@ -216,7 +216,6 @@ namespace VRTK
         [Tooltip("If this is checked then the grip axis will be forced to 0f when the grip button reports an untouch event.")]
         public bool gripAxisZeroOnUntouch = false;
 
-        public GunShoot gunShoot;
 
         #region bool states
 

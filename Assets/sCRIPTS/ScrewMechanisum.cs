@@ -9,9 +9,9 @@
     public class ScrewMechanisum : MonoBehaviour
     {
         public bool canMove;
-        public GunShoot gunShoot;
-
-
+        public DrillMechanisam drillMechanisam;
+        public NotificationManager notificationManager;
+        public bool isReachedtheEnd = false;
         // Update is called once per frame
         void Update()
         {
@@ -21,15 +21,33 @@
             {
                 transform.Rotate(new Vector3(0, 1, 0), 10f);
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - .0001f, transform.localPosition.z);
+                print("-------" + transform.localPosition.y);
+                //isReachedtheEnd = true;
 
+                if (transform.localPosition.y == 0.9599925f)
+                {
+                    print("ENDDDDDDDDDDDDD");
+                    isReachedtheEnd = true;
+                  //  notificationManager.ActivateFinalNotification();
+                }
             }
+
+            //if (isReachtheEnd) 
+            //{
+            //   
+
+            //}
+            //if(transform.localPosition.y == 0.96f) 
+            //{
+            //    //Game over
+            //}
 
 
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (gunShoot.canDrill)
+            if (drillMechanisam.canDrill)
             {
                 canMove = true;
             }
@@ -37,7 +55,7 @@
             {
                 canMove = false;
             }
-           
+
         }
         private void OnTriggerExit(Collider other)
         {
