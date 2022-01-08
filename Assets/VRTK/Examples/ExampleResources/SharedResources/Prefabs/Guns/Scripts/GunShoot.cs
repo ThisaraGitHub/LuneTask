@@ -17,43 +17,29 @@
         private void Start()
         {
             linkedObject = GetComponent<VRTK_InteractableObject>();
-            linkedObject.InteractableObjectUnused += EnableDrill; 
-            linkedObject.InteractableObjectUsed += DisableDrill;
+            linkedObject.InteractableObjectUnused += DisableDrill; 
+            linkedObject.InteractableObjectUsed += EnableDrill;
         }
-
-        //protected virtual void OnEnable()
-        //{
-        //    linkedObject = (linkedObject == null ? GetComponent<VRTK_InteractableObject>() : linkedObject);
-        //    //  trackedControllerEventHandler = GetComponent<VRTKTrackedControllerEventHandler>();
-
-        //    if (linkedObject != null)
-        //    {
-        //        linkedObject.InteractableObjectUsed += InteractableObjectUsed;
-        //        VRTK_InteractGrab.ObjectAdded += CheckDrill;
-        //    }
-        //}
 
 
 
         protected virtual void OnDisable()
         {
-            linkedObject.InteractableObjectUnused -= EnableDrill;
-            linkedObject.InteractableObjectUsed -= DisableDrill;
-            //if (linkedObject != null)
-            //{
-            //    linkedObject.InteractableObjectUsed -= DisableDrill;
-            //}
+            linkedObject.InteractableObjectUnused -= DisableDrill;
+            linkedObject.InteractableObjectUsed -= EnableDrill;
         }
 
         public void EnableDrill(object sender, InteractableObjectEventArgs e)
         {
-            rotateDrilHead.canRotate = false;
+            rotateDrilHead.canRotate = true;
+            canDrill = true;
             //Spond on
         }
 
         protected virtual void DisableDrill(object sender, InteractableObjectEventArgs e)
         {
-            rotateDrilHead.canRotate = true;
+            rotateDrilHead.canRotate = false;
+            canDrill = false;
             //Spond off
         }
 
