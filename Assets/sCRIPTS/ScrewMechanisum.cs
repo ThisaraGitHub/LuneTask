@@ -23,13 +23,13 @@
                 transform.Rotate(new Vector3(0, 1, 0), 10f);
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - .0001f, transform.localPosition.z);
                 print("-------" + transform.localPosition.y);
-                dustParticle.SetActive(true);
+                
 
                 if (transform.localPosition.y == 0.9599925f)
                 {
                     print("ENDDDDDDDDDDDDD");
                     isReachedtheEnd = true;
-                    dustParticle.SetActive(false);
+                    
                     //  notificationManager.ActivateFinalNotification();
                 }
             }
@@ -51,16 +51,19 @@
         {
             if (drillMechanisam.canDrill)
             {
+                dustParticle.SetActive(true);
                 canMove = true;
             }
             else
             {
+                dustParticle.SetActive(false);
                 canMove = false;
             }
 
         }
         private void OnTriggerExit(Collider other)
         {
+            dustParticle.SetActive(false);
             canMove = false;
         }
     }
