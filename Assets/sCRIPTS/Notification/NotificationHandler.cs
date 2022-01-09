@@ -9,7 +9,7 @@ public class NotificationHandler : MonoBehaviour
     /// <summary>
     // This script handles inside mechanisam of the notification popup  //
     /// </summary>
-    
+
     public Text nameText;                                           // Reference to the tittle text
     public Text dialogText;                                         // Reference to the message body text
     public GameObject notificationPopup;                            // Reference to the notification popup
@@ -28,6 +28,7 @@ public class NotificationHandler : MonoBehaviour
     public void StartDialogue(Notification dialogue)                // Start dialogue method
     {
         notificationPopup.SetActive(true);
+        FindObjectOfType<SoundManager>().Play("NotificationOn");
         Debug.Log("starting convacation" + dialogue.name);
         sentences.Clear();
         nameText.text = dialogue.name;
@@ -35,7 +36,7 @@ public class NotificationHandler : MonoBehaviour
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
-           
+
         }
         DisplayNextSentence();
     }
@@ -47,7 +48,7 @@ public class NotificationHandler : MonoBehaviour
             EndDialogue();
             return;
         }
-
+        FindObjectOfType<SoundManager>().Play("Click");
         string sentence = sentences.Dequeue();
         dialogText.text = sentence;
         StartCoroutine(TypeSentence(sentence));
@@ -60,12 +61,14 @@ public class NotificationHandler : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogText.text += letter;
-            yield return null;        
+            yield return null;
         }
     }
 
     public void EndDialogue()                                       // End of the dialogue
     {
+
+        FindObjectOfType<SoundManager>().Play("NotificationOff");
         notificationPopup.SetActive(false);
         Debug.Log("End of convacation");
     }
@@ -73,6 +76,9 @@ public class NotificationHandler : MonoBehaviour
     IEnumerator SelfDeactivate()                                    // Seld deactivation timmer
     {
         yield return new WaitForSeconds(7);
-       // notificationPopup.SetActive(false);
+        FindObjectOfType<SoundManager>().Play("NotificationOff");
+        notificationPopup.SetActive(false);
+
+
     }
 }
