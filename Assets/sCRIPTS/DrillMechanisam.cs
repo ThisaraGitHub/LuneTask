@@ -25,17 +25,15 @@
 
         public void EnableDrill(object sender, InteractableObjectEventArgs e)
         {
-            rotateDrilHead.canRotate = true;
             canDrill = true;
-            //Spond on
+            rotateDrilHead.canRotate = true;
             FindObjectOfType<SoundManager>().Play("DrillStart");
         }
 
         protected virtual void DisableDrill(object sender, InteractableObjectEventArgs e)
         {
-            rotateDrilHead.canRotate = false;
             canDrill = false;
-            //Spond off
+            rotateDrilHead.canRotate = false;
             FindObjectOfType<SoundManager>().Stop("DrillStart");
             FindObjectOfType<SoundManager>().Play("DrillEnd");
         }

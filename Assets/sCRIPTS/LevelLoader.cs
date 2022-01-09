@@ -25,7 +25,8 @@ public class LevelLoader : MonoBehaviour
         {
             float progress = Mathf.Clamp01(oparation.progress / 0.9f);
             slider.value = progress;
-            progressText.text = progress * 100f + "%";
+            //progressText.text = progress * 100f + "%";
+            progressText.text = $"{progress * 100f}%";
             yield return null;
         }
     }

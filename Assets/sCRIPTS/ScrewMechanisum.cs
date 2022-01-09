@@ -8,7 +8,7 @@
 
     public class ScrewMechanisum : MonoBehaviour
     {
-        public bool canMove;
+        public bool canMove;// can drill
         public bool isReachedtheEnd = false;
         public DrillMechanisam drillMechanisam;
         public NotificationManager notificationManager;
