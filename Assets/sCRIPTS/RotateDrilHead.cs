@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class RotateDrilHead : MonoBehaviour
 {
-   public bool canRotate;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    /// <summary>
+    // This script handles the rotation of the drill //
+    /// </summary>
+ 
+    public bool canRotate;                              // Public reference to the handle the rotation of the drill head
 
     // Update is called once per frame
     void Update()

@@ -6,34 +6,38 @@ namespace VRTK
 
     public class NotificationManager : MonoBehaviour
     {
-        public GameObject fisrstInstructionPannel;
-        public GameObject secondInstructionPannel;
-        public GameObject finalInstructionPannel;
-        public GameObject snapObject;
-        public GameObject exitButton;
-        public ScrewMechanisum screwMechanisum;
+        /// <summary>
+        // This script handles states of the notifications  //
+        /// </summary>
+        
+        public GameObject fisrstInstructionPannel;                                                  // Reference to the 1st notification
+        public GameObject secondInstructionPannel;                                                  // Reference to the 2nd notification
+        public GameObject finalInstructionPannel;                                                   // Reference to the 3rd notification
+        public GameObject snapObject;                                                               // Reference to the snapped object
+        public GameObject exitButton;                                                               // Reference to the exit button
+        public ScrewMechanisum screwMechanisum;                                                     // Reference to the screw mechanisam
 
-        private VRTK_SnapDropZone snapDropZone;
-        private bool isSnapped = false;
+        private VRTK_SnapDropZone snapDropZone;                                                     // Private reference to the snap drop zone
+        private bool isSnapped = false;                                                             // Initial state snapping falsed
 
         private void Start()
         {
-            snapDropZone = snapObject.GetComponent<VRTK_SnapDropZone>();
-            snapDropZone.ObjectSnappedToDropZone += SnapDropZone_ObjectSnappedToDropZone;
-            snapDropZone.ObjectUnsnappedFromDropZone += SnapDropZone_ObjectUnsnappedFromDropZone;
+            snapDropZone = snapObject.GetComponent<VRTK_SnapDropZone>();                            // Initializing VRTK Snap Drop Zone
+            snapDropZone.ObjectSnappedToDropZone += SnapDropZone_ObjectSnappedToDropZone;           // Subscrbe the VRTK Snap Drop Zone
+            snapDropZone.ObjectUnsnappedFromDropZone += SnapDropZone_ObjectUnsnappedFromDropZone;   // Subscrbe the VRTK Object Unsnapped From Drop Zone
             StartCoroutine(InstructionPannelCoroutine());
 
         }
 
         private void Update()
         {
-            if (screwMechanisum.isReachedtheEnd)
+            if (screwMechanisum.isReachedtheEnd)                                                     // Display final popup
             {
                 ShowNotification(NotificationState.FINAL);
             }
         }
 
-        private void SnapDropZone_ObjectSnappedToDropZone(object sender, SnapDropZoneEventArgs e)
+        private void SnapDropZone_ObjectSnappedToDropZone(object sender, SnapDropZoneEventArgs e)    // After snapped, things are handled here
         {
             print("Object Snapped To DropZone");
             FindObjectOfType<SoundManager>().Play("Snap");
@@ -44,26 +48,26 @@ namespace VRTK
             }
         }
 
-        private void SnapDropZone_ObjectUnsnappedFromDropZone(object sender, SnapDropZoneEventArgs e)
+        private void SnapDropZone_ObjectUnsnappedFromDropZone(object sender, SnapDropZoneEventArgs e)   // After Unsnapped, things are handled here
         {
             print("Object Unsnapped From DropZone");
             FindObjectOfType<SoundManager>().Play("Snap");
         }
 
-        IEnumerator InstructionPannelCoroutine()
+        IEnumerator InstructionPannelCoroutine()                                                         // Initial notification handles here
         {
             yield return new WaitForSeconds(1);
             ShowNotification(NotificationState.FIRST);
         }
 
-        public void DisableAllNotification()
+        public void DisableAllNotification()                                                              // Disable all notifications
         {
             fisrstInstructionPannel.SetActive(false);
             secondInstructionPannel.SetActive(false);
             finalInstructionPannel.SetActive(false);
         }
 
-        public void ShowNotification(NotificationState state)
+        public void ShowNotification(NotificationState state)                                               // Handeling notifications states
         {
             DisableAllNotification();
             switch (state)
@@ -83,7 +87,7 @@ namespace VRTK
         }
     }
 
-    public enum NotificationState 
+    public enum NotificationState                                                                               // ENUM for the notification
     {
         FIRST,SECOND,FINAL
     }

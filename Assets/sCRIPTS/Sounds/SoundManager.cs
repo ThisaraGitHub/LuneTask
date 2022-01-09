@@ -5,8 +5,12 @@ using System;
 
 public class SoundManager : MonoBehaviour
 {
-    public Sounds[] sounds;
-    public static SoundManager instance;
+    /// <summary>
+    // This script handles the sounds of the entire application //
+    /// </summary>
+ 
+    public Sounds[] sounds;                                     // Reference to the sound properties stored in Sounds class
+    public static SoundManager instance;                        // Setting the instance
 
     private void Awake()
     {
@@ -15,7 +19,7 @@ public class SoundManager : MonoBehaviour
             instance = this;
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject);                                    // Checking that if there any additional instance except this and it will destroyed
             return;
         }
 
@@ -34,7 +38,7 @@ public class SoundManager : MonoBehaviour
     {
         FindObjectOfType<SoundManager>().Play("Theme");
     }
-    public void Play(string name)
+    public void Play(string name)                                   // Audio play public method
     {
         Sounds s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
@@ -42,12 +46,10 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found");
             return;
         }
-
         s.source.Play();
     }
 
-
-    public void Stop(string name)
+    public void Stop(string name)                                   // Audio stop public method
     {
         Sounds s = Array.Find(sounds, sound => sound.name == name);
 
