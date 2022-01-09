@@ -7747,7 +7747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &323847421
 Transform:
   m_ObjectHideFlags: 0
@@ -7793,7 +7793,7 @@ MonoBehaviour:
   DefaultHandMaterialManager: {fileID: 490863139}
   Driver: {fileID: 323847422}
   oculusUserID: 0
-  EnableBody: 1
+  EnableBody: 0
   EnableHands: 1
   EnableBase: 0
   EnableExpressive: 1
