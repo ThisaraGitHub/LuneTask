@@ -10,7 +10,9 @@ public class Sounds
 
     [Range(0f, 1f)]
     public float volume = 0.5f;
-    public bool loop = false;
+
+    public bool loop;
+
     [HideInInspector]
     public AudioSource source;
 }

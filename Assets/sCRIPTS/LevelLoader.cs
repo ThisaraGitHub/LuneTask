@@ -12,8 +12,10 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevel(int sceneIndex)
     {
-        StartCoroutine(LoadAsynchronously(sceneIndex));
         slider.gameObject.SetActive(true);
+        StartCoroutine(LoadAsynchronously(sceneIndex));
+        FindObjectOfType<SoundManager>().Play("Click");
+
     }
 
     IEnumerator LoadAsynchronously(int sceneIndex)
@@ -26,5 +28,11 @@ public class LevelLoader : MonoBehaviour
             progressText.text = progress * 100f + "%";
             yield return null;
         }
+    }
+
+    public void LoadError()
+    {
+
+        FindObjectOfType<SoundManager>().Play("Error");
     }
 }

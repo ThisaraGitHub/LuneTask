@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
     //AudioManager
 
-    void Awake()
+    private void Awake()
     {
 
         if (instance == null)
@@ -28,9 +28,14 @@ public class SoundManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.volume = s.volume;
+            s.source.loop = s.loop;
         }
     }
 
+    private void Start()
+    {
+        FindObjectOfType<SoundManager>().Play("Theme");
+    }
     public void Play(string name)
     {
         Sounds s = Array.Find(sounds, sound => sound.name == name);
@@ -43,17 +48,6 @@ public class SoundManager : MonoBehaviour
         s.source.Play();
     }
 
-    public void Loop(string name)
-    {
-        Sounds s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("Sound: " + name + " not found");
-            return;
-        }
-
-        s.source.loop = true;
-    }
 
     public void Stop(string name)
     {
