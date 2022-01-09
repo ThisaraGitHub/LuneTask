@@ -26,7 +26,6 @@ namespace VRTK
             snapDropZone.ObjectSnappedToDropZone += SnapDropZone_ObjectSnappedToDropZone;           // Subscrbe the VRTK Snap Drop Zone
             snapDropZone.ObjectUnsnappedFromDropZone += SnapDropZone_ObjectUnsnappedFromDropZone;   // Subscrbe the VRTK Object Unsnapped From Drop Zone
             StartCoroutine(InstructionPannelCoroutine());
-
         }
 
         private void Update()

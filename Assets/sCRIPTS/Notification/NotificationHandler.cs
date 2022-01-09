@@ -13,7 +13,6 @@ public class NotificationHandler : MonoBehaviour
     public Text nameText;                                           // Reference to the tittle text
     public Text dialogText;                                         // Reference to the message body text
     public GameObject notificationPopup;                            // Reference to the notification popup
-    //public GameObject activateNextInstruction;
     public Notification dialogue;                                   // Reference to the notification class
 
     private Queue<string> sentences;                                // Reference for the sentences in a popup. FIFO
@@ -31,8 +30,8 @@ public class NotificationHandler : MonoBehaviour
         notificationPopup.SetActive(true);
         Debug.Log("starting convacation" + dialogue.name);
         sentences.Clear();
-
         nameText.text = dialogue.name;
+
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
@@ -58,12 +57,10 @@ public class NotificationHandler : MonoBehaviour
     IEnumerator TypeSentence(string sentence)                       // Texts animation
     {
         dialogText.text = "";
-
         foreach (char letter in sentence.ToCharArray())
         {
             dialogText.text += letter;
-            yield return null;
-            
+            yield return null;        
         }
     }
 
@@ -75,7 +72,6 @@ public class NotificationHandler : MonoBehaviour
 
     IEnumerator SelfDeactivate()                                    // Seld deactivation timmer
     {
-
         yield return new WaitForSeconds(7);
        // notificationPopup.SetActive(false);
     }
