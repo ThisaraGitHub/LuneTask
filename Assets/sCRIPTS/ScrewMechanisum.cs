@@ -9,9 +9,10 @@
     public class ScrewMechanisum : MonoBehaviour
     {
         public bool canMove;
+        public bool isReachedtheEnd = false;
         public DrillMechanisam drillMechanisam;
         public NotificationManager notificationManager;
-        public bool isReachedtheEnd = false;
+        public GameObject dustParticle;
         // Update is called once per frame
         void Update()
         {
@@ -22,13 +23,14 @@
                 transform.Rotate(new Vector3(0, 1, 0), 10f);
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - .0001f, transform.localPosition.z);
                 print("-------" + transform.localPosition.y);
-                //isReachedtheEnd = true;
+                dustParticle.SetActive(true);
 
                 if (transform.localPosition.y == 0.9599925f)
                 {
                     print("ENDDDDDDDDDDDDD");
                     isReachedtheEnd = true;
-                  //  notificationManager.ActivateFinalNotification();
+                    dustParticle.SetActive(false);
+                    //  notificationManager.ActivateFinalNotification();
                 }
             }
 
