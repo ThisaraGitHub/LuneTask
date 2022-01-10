@@ -35,3 +35,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/Plugins.meta
+Assets/Plugins/Android.meta
+Assets/Plugins/Android/AndroidManifest.xml
+Assets/Plugins/Android/AndroidManifest.xml.meta
